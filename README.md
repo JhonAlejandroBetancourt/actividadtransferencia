@@ -1,215 +1,432 @@
-# 🎓 Conceptos Técnicos Avanzados
-
-## 📚 Índice de Conceptos
-
-1. [Conceptos CSS](#conceptos-css)
-2. [Conceptos JavaScript](#conceptos-javascript)
-3. [Mejores Prácticas](#mejores-prácticas)
-4. [Optimizaciones](#optimizaciones)
+## 📋 Índice
+1. [Estructura General del Proyecto](#estructura-general)
+2. [Documentación HTML](#html)
+3. [Documentación CSS](#css)
+4. [Documentación JavaScript](#javascript)
+5. [Guía de Uso](#guía-de-uso)
 
 ---
 
-## 🎨 Conceptos CSS
+## 🏗️ Estructura General del Proyecto
 
-### 1. **Flexbox - Sistema de Layout Flexible**
+El proyecto está dividido en 3 archivos principales:
+
+```
+proyecto/
+├── index.html      # Estructura y contenido de la página
+├── styles.css      # Estilos y diseño visual
+└── script.js       # Funcionalidad e interactividad
+```
+
+---
+
+## 📄 HTML (index.html)
+
+### 1. **Head - Configuración inicial**
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingeniería de Sistemas | UCompensar</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat..." rel="stylesheet">
+</head>
+```
+
+**Explicación:**
+- `charset="UTF-8"`: Permite usar caracteres especiales como tildes y ñ
+- `viewport`: Hace la página responsive (adaptable a móviles)
+- `<link>`: Conecta el archivo CSS y carga las fuentes de Google Fonts
+- **Fuentes usadas**: Montserrat (títulos), Roboto (texto general), Poppins (elementos especiales)
+
+---
+
+### 2. **Top Bar - Barra superior**
+
+```html
+<div class="top-bar">
+    <div class="container">
+        <div class="top-bar-content">
+            <div class="top-links">
+                <a href="#">Graduados</a>
+                <a href="#">Estudiantes</a>
+                <!-- más enlaces -->
+            </div>
+            <button class="btn-work">Trabaja con nosotros</button>
+        </div>
+    </div>
+</div>
+```
+
+**Explicación:**
+- **Propósito**: Barra de navegación secundaria en la parte superior
+- `container`: Clase que centra el contenido y limita el ancho máximo
+- `top-links`: Contiene los enlaces de navegación
+- `btn-work`: Botón destacado de color naranja para llamar la atención
+
+---
+
+### 3. **Header - Encabezado principal**
+
+```html
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <img src="..." alt="UCompensar Logo" class="logo">
+            <nav class="main-nav">
+                <a href="#">La institución</a>
+                <a href="#">Estudia con Nosotros</a>
+                <!-- más enlaces -->
+            </nav>
+            <button class="search-btn">🔍</button>
+        </div>
+    </div>
+</header>
+```
+
+**Explicación:**
+- **Propósito**: Navegación principal de la página
+- `position: sticky`: El header se mantiene fijo al hacer scroll
+- Logo de la universidad a la izquierda
+- Menú de navegación principal en el centro
+- Botón de búsqueda a la derecha
+
+---
+
+### 4. **Hero Section - Sección principal**
+
+```html
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-label">Estudia</p>
+                <h1>Ingeniería de Sistemas</h1>
+                <p class="hero-info">SNIES: 101742 / Resolución: 9542...</p>
+                <div class="program-details">
+                    <p><strong>Duración del programa</strong> 10 semestres</p>
+                    <p><strong>Facultad</strong> Ingeniería</p>
+                    <p><strong>Modalidad</strong> Virtual</p>
+                </div>
+                <button class="btn-download">
+                    <span>Plan de estudios</span>
+                    <span class="download-icon">⬇</span>
+                </button>
+            </div>
+            <div class="hero-image">
+                <img src="..." alt="Estudiante de Ingeniería">
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Sección de bienvenida con información principal del programa
+- Fondo con gradiente azul (de `#1f91bc` a `#0d5d7a`)
+- Layout en 2 columnas: texto a la izquierda, imagen a la derecha
+- Botón de descarga con icono circular naranja
+- Información clave del programa destacada
+
+---
+
+### 5. **Pricing Cards - Tarjetas de precios**
+
+```html
+<section class="pricing">
+    <div class="container">
+        <div class="pricing-cards">
+            <div class="price-card">
+                <div class="card-icon">
+                    <img src="..." alt="Icon">
+                </div>
+                <div class="card-content">
+                    <h3>VALOR AFILIADO</h3>
+                    <div class="price">$2.583.360</div>
+                    <p class="period">Primer semestre</p>
+                </div>
+                <p class="price-note">10 % dto para afiliados...</p>
+            </div>
+            <!-- 2 cards más -->
+        </div>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Mostrar las diferentes opciones de precios
+- 3 tarjetas: Valor Afiliado, Valor Programa, Valor Becado
+- Fondo oscuro con gradiente (`#293946` a `#1f2a35`)
+- Icono circular en la parte superior de cada tarjeta
+- `margin-top: -50px`: Las tarjetas se superponen ligeramente con el hero
+
+---
+
+### 6. **Form Section - Formulario de contacto**
+
+```html
+<section class="form-section">
+    <div class="container">
+        <h2><span class="highlight">Déjanos</span> tus datos</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Nombre" required>
+            <input type="text" placeholder="Apellidos" required>
+            <input type="text" placeholder="Documento de Identidad" required>
+            <input type="email" placeholder="Correo" required>
+            <input type="tel" placeholder="Celular" required>
+
+            <div class="form-group">
+                <label>¿Cuándo planeas iniciar tus estudios?</label>
+                <select required>
+                    <option value="">Inmediatamente</option>
+                    <!-- más opciones -->
+                </select>
+            </div>
+            <!-- más campos -->
+
+            <div class="form-check">
+                <input type="checkbox" id="privacy" required>
+                <label for="privacy">Acepto la Política...</label>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar</button>
+        </form>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Capturar información de contacto de estudiantes interesados
+- Grid de 2 columnas para los campos
+- Campos de texto, email, teléfono y selectores
+- Validación HTML5 con `required`
+- Checkbox para aceptar políticas de privacidad
+- Botón de envío con estilo destacado
+
+---
+
+### 7. **Titulaciones - Programas académicos**
+
+```html
+<section class="titulaciones">
+    <div class="container">
+        <h2>Titulaciones</h2>
+        <div class="titulaciones-grid">
+            <div class="titulacion-card">
+                <p class="tecnica">Técnica profesional en</p>
+                <h3>OPERACIÓN Y MANTENIMIENTO DE BASES DE DATOS</h3>
+                <p class="resolucion">Resolución 12315...</p>
+                <button class="btn-tarifa">Ver tarifas de créditos aquí</button>
+            </div>
+            <!-- 2 cards más -->
+        </div>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Mostrar las diferentes titulaciones que se obtienen
+- 3 niveles: Técnica profesional, Tecnología, Profesional
+- Fondo oscuro degradado (morado a azul oscuro)
+- Botones rosados para ver tarifas
+- Información legal (resoluciones y SNIES)
+
+---
+
+### 8. **Futuro Académico - Descripción y video**
+
+```html
+<section class="futuro-academico">
+    <div class="container">
+        <h2>Conoce tu futuro académico</h2>
+        <div class="futuro-content">
+            <div class="futuro-text">
+                <p>Como profesional en Ingeniería de Sistemas...</p>
+                <p>Te puedes certificar internacionalmente...</p>
+            </div>
+            <div class="futuro-video">
+                <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/CVb7TGjxpnY"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Explicar el perfil profesional y mostrar testimonios
+- Layout en 2 columnas: texto justificado + video de YouTube
+- Video embebido con iframe
+- Texto alineado a la izquierda, video a la derecha
+
+---
+
+### 9. **Carousel - Por qué elegirnos**
+
+```html
+<section class="por-que-elegirnos">
+    <div class="container">
+        <h2>¿Por qué elegirnos?</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="prevSlide()">❮</button>
+            <div class="carousel-wrapper">
+                <div class="carousel-track">
+                    <div class="carousel-card">
+                        <div class="card-number">01</div>
+                        <p><strong>Aprende</strong> en un entorno validado...</p>
+                    </div>
+                    <!-- más cards -->
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+</section>
+```
+
+**Explicación:**
+- **Propósito**: Mostrar beneficios del programa de forma interactiva
+- Carrusel deslizante con botones de navegación
+- Fondo azul con gradiente
+- Cards semi-transparentes con efecto glassmorphism
+- Números grandes en el fondo de cada card
+- Auto-scroll cada 5 segundos
+
+---
+
+### 10. **Floating Buttons - Botones flotantes**
+
+```html
+<div class="floating-buttons">
+    <button class="whatsapp-btn">
+        <img src="data:image/svg+xml..." alt="WhatsApp">
+    </button>
+    <button class="chat-btn">💬</button>
+</div>
+```
+
+**Explicación:**
+- **Propósito**: Acceso rápido a WhatsApp y chat en vivo
+- Posición fija en la esquina inferior derecha
+- Botón WhatsApp verde con icono SVG
+- Botón de chat naranja
+- Siempre visibles al hacer scroll
+
+---
+
+## 🎨 CSS (styles.css)
+
+### 1. **Reset y Variables Globales**
 
 ```css
-.hero-content {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+```
+
+**Explicación:**
+- **Reset CSS**: Elimina márgenes y paddings por defecto del navegador
+- `box-sizing: border-box`: El padding y border se incluyen en el ancho total
+- Fuente por defecto: Roboto
+- Color de texto: `#333` (gris oscuro)
+
+---
+
+### 2. **Container - Contenedor centralizado**
+
+```css
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+```
+
+**Explicación:**
+- **Propósito**: Limitar el ancho del contenido y centrarlo
+- Ancho máximo: 1200px
+- `margin: 0 auto`: Centra horizontalmente
+- Padding lateral de 20px para respiración en móviles
+
+---
+
+### 3. **Top Bar - Estilos de barra superior**
+
+```css
+.top-bar {
+    background-color: #293946;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.top-bar-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-```
 
-**¿Qué es Flexbox?**
-- Sistema de layout unidimensional (una fila o una columna)
-- Perfecto para distribuir espacio entre elementos
-
-**Propiedades principales:**
-- `display: flex` → Activa el modo flexbox
-- `justify-content` → Alineación horizontal
-  - `space-between` → Espacio entre elementos
-  - `center` → Centrado
-  - `flex-start` → Al inicio
-  - `flex-end` → Al final
-- `align-items` → Alineación vertical
-  - `center` → Centrado vertical
-  - `stretch` → Estira elementos
-  - `flex-start` → Arriba
-  - `flex-end` → Abajo
-- `flex-direction` → Dirección del eje
-  - `row` → Horizontal (por defecto)
-  - `column` → Vertical
-
-**Ejemplo práctico:**
-```css
-.container {
-    display: flex;
-    flex-direction: row;      /* Horizontal */
-    justify-content: center;   /* Centra horizontalmente */
-    align-items: center;       /* Centra verticalmente */
-    gap: 20px;                 /* Espacio entre elementos */
+.top-links a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
 }
 
-.item {
-    flex: 1;  /* Todos ocupan el mismo espacio */
+.top-links a:hover {
+    opacity: 0.8;
 }
 ```
+
+**Explicación:**
+- Fondo gris oscuro (`#293946`)
+- Flexbox para alinear enlaces y botón
+- Enlaces blancos que se vuelven semi-transparentes al hacer hover
+- Transición suave de 0.3 segundos
 
 ---
 
-### 2. **CSS Grid - Sistema de Layout Bidimensional**
-
-```css
-.pricing-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-```
-
-**¿Qué es CSS Grid?**
-- Sistema de layout bidimensional (filas y columnas)
-- Ideal para layouts complejos
-
-**Propiedades principales:**
-- `display: grid` → Activa el modo grid
-- `grid-template-columns` → Define columnas
-  - `repeat(3, 1fr)` → 3 columnas iguales
-  - `1fr 2fr 1fr` → Columnas con diferentes proporciones
-  - `200px auto 200px` → Columnas fijas y automáticas
-- `grid-template-rows` → Define filas
-- `gap` → Espacio entre celdas
-- `grid-column` → Expande una celda en columnas
-  - `1 / -1` → Desde la primera hasta la última columna
-  - `span 2` → Ocupa 2 columnas
-
-**Ejemplo práctico:**
-```css
-.form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;  /* 2 columnas iguales */
-    gap: 20px;
-}
-
-.full-width {
-    grid-column: 1 / -1;  /* Ocupa todas las columnas */
-}
-```
-
----
-
-### 3. **Position - Posicionamiento de Elementos**
+### 4. **Header Sticky**
 
 ```css
 .header {
+    background-color: white;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 ```
 
-**Tipos de position:**
-
-**1. Static (por defecto)**
-```css
-.element {
-    position: static;  /* Flujo normal del documento */
-}
-```
-
-**2. Relative (relativo a su posición original)**
-```css
-.element {
-    position: relative;
-    top: 10px;      /* Se mueve 10px hacia abajo */
-    left: 20px;     /* Se mueve 20px hacia la derecha */
-}
-```
-
-**3. Absolute (relativo al padre más cercano con position)**
-```css
-.parent {
-    position: relative;  /* Contexto de referencia */
-}
-
-.child {
-    position: absolute;
-    top: 0;
-    right: 0;  /* Esquina superior derecha del padre */
-}
-```
-
-**4. Fixed (relativo a la ventana)**
-```css
-.floating-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;  /* Siempre en la esquina inferior derecha */
-}
-```
-
-**5. Sticky (mezcla de relative y fixed)**
-```css
-.header {
-    position: sticky;
-    top: 0;  /* Se "pega" al top cuando haces scroll */
-}
-```
-
-**Z-index (profundidad):**
-```css
-.layer1 { z-index: 1; }    /* Más atrás */
-.layer2 { z-index: 10; }   /* En medio */
-.layer3 { z-index: 100; }  /* Más adelante */
-```
+**Explicación:**
+- **`position: sticky`**: Se mantiene en la parte superior al hacer scroll
+- **`z-index: 100`**: Aparece por encima de otros elementos
+- Sombra sutil para dar profundidad
+- Borde inferior para separación visual
 
 ---
 
-### 4. **Gradientes - Degradados de Color**
+### 5. **Hero Section - Gradiente y overlay**
 
 ```css
 .hero {
     background: linear-gradient(135deg, #1f91bc 0%, #0d5d7a 100%);
+    padding: 80px 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
 }
-```
 
-**Linear Gradient (gradiente lineal):**
-```css
-/* Sintaxis básica */
-background: linear-gradient(dirección, color1, color2, ...);
-
-/* Ejemplos */
-background: linear-gradient(to right, red, blue);
-background: linear-gradient(45deg, #ff0000, #00ff00);
-background: linear-gradient(135deg, #1f91bc 0%, #0d5d7a 100%);
-
-/* Múltiples colores */
-background: linear-gradient(to bottom,
-    red 0%,
-    yellow 33%,
-    green 66%,
-    blue 100%
-);
-```
-
-**Radial Gradient (gradiente radial):**
-```css
-background: radial-gradient(circle, red, blue);
-background: radial-gradient(ellipse at top, red, blue);
-```
-
-**Direcciones:**
-- `to right` → De izquierda a derecha
-- `to bottom` → De arriba a abajo
-- `135deg` → Ángulo de 135 grados
-- `to top right` → Diagonal superior derecha
-
----
-
-### 5. **Pseudo-elementos - ::before y ::after**
-
-```css
 .hero::before {
     content: '';
     position: absolute;
@@ -217,886 +434,591 @@ background: radial-gradient(ellipse at top, red, blue);
     right: 0;
     width: 50%;
     height: 100%;
-    background: url('...');
+    background: url('data:image/svg+xml...');
+    background-size: 300px;
     opacity: 0.3;
 }
 ```
 
-**¿Qué son?**
-- Elementos virtuales que se agregan antes o después del contenido
-- Útiles para efectos decorativos sin agregar HTML
-
-**Características:**
-- **Requieren `content`** (aunque sea vacío `''`)
-- Se comportan como elementos normales
-- No aparecen en el DOM (no se pueden seleccionar con JavaScript)
-
-**Usos comunes:**
-```css
-/* Icono antes del texto */
-.item::before {
-    content: '→ ';
-    color: blue;
-}
-
-/* Overlay oscuro sobre imagen */
-.image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-}
-
-/* Clearfix para floats */
-.container::after {
-    content: '';
-    display: table;
-    clear: both;
-}
-```
+**Explicación:**
+- **Gradiente diagonal**: De azul claro a azul oscuro
+- **Pseudo-elemento `::before`**: Crea patrón decorativo
+- `overflow: hidden`: Oculta elementos que se salgan
+- Padding vertical de 80px para espacio
 
 ---
 
-### 6. **Transforms - Transformaciones**
+### 6. **Flexbox Layout**
 
 ```css
-.carousel-track {
-    transform: translateX(-300px);
+.hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
-.card:hover {
-    transform: scale(1.05) rotate(2deg);
+.hero-text {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: right;
 }
 ```
 
-**Tipos de transformaciones:**
-
-**1. Translate (mover)**
-```css
-transform: translateX(50px);      /* Mueve 50px a la derecha */
-transform: translateY(-20px);     /* Mueve 20px hacia arriba */
-transform: translate(50px, -20px); /* X e Y juntos */
-```
-
-**2. Scale (escalar)**
-```css
-transform: scale(1.5);        /* 150% del tamaño original */
-transform: scale(0.5);        /* 50% del tamaño */
-transform: scaleX(2);         /* Solo horizontal */
-transform: scaleY(0.8);       /* Solo vertical */
-```
-
-**3. Rotate (rotar)**
-```css
-transform: rotate(45deg);     /* Gira 45 grados */
-transform: rotate(-90deg);    /* Gira -90 grados */
-```
-
-**4. Skew (inclinar)**
-```css
-transform: skewX(10deg);      /* Inclina horizontalmente */
-transform: skewY(5deg);       /* Inclina verticalmente */
-```
-
-**Múltiples transformaciones:**
-```css
-transform: translateX(50px) scale(1.2) rotate(10deg);
-```
-
-**Transform origin (punto de referencia):**
-```css
-transform-origin: center;      /* Por defecto */
-transform-origin: top left;    /* Desde esquina superior izquierda */
-transform-origin: 50% 50%;     /* Centro (igual que 'center') */
-```
+**Explicación:**
+- **Flexbox**: Sistema de layout flexible
+- `justify-content: space-between`: Separa texto e imagen
+- `align-items: center`: Centra verticalmente
+- `flex: 1`: Ambos elementos ocupan el mismo espacio
+- `z-index: 1`: Aparece por encima del pseudo-elemento
 
 ---
 
-### 7. **Transitions - Transiciones Suaves**
+### 7. **Pricing Cards - Grid y efectos**
 
 ```css
-.button {
-    background-color: blue;
-    transition: background-color 0.3s ease;
+.pricing-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
 }
 
-.button:hover {
-    background-color: red;
-}
-```
-
-**Sintaxis completa:**
-```css
-transition: property duration timing-function delay;
-
-/* Ejemplo */
-transition: all 0.3s ease-in-out 0.1s;
-```
-
-**Propiedades:**
-- `property` → Qué animar (`all`, `background`, `transform`, etc.)
-- `duration` → Duración (ej: `0.3s`, `300ms`)
-- `timing-function` → Curva de velocidad
-  - `ease` → Lento-rápido-lento (por defecto)
-  - `linear` → Velocidad constante
-  - `ease-in` → Empieza lento
-  - `ease-out` → Termina lento
-  - `ease-in-out` → Empieza y termina lento
-- `delay` → Retraso antes de iniciar
-
-**Ejemplos prácticos:**
-```css
-/* Transición en múltiples propiedades */
-.card {
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        background-color 0.5s linear;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    background-color: #f0f0f0;
-}
-```
-
----
-
-### 8. **Box Shadow - Sombras**
-
-```css
-.card {
+.price-card {
+    background: linear-gradient(135deg, #293946 0%, #1f2a35 100%);
+    border-radius: 20px;
+    padding: 30px;
+    color: white;
+    position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.price-card:hover {
+    transform: translateY(-5px);
 }
 ```
 
-**Sintaxis:**
-```css
-box-shadow: offset-x offset-y blur-radius spread-radius color;
-
-/* Ejemplo */
-box-shadow: 5px 5px 10px 0 rgba(0,0,0,0.5);
-```
-
-**Parámetros:**
-- `offset-x` → Desplazamiento horizontal (positivo = derecha)
-- `offset-y` → Desplazamiento vertical (positivo = abajo)
-- `blur-radius` → Difuminado (mayor = más suave)
-- `spread-radius` → Expansión de la sombra
-- `color` → Color (usar `rgba` para transparencia)
-
-**Ejemplos:**
-```css
-/* Sombra suave debajo */
-box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-/* Sombra pronunciada */
-box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-
-/* Sombra interna */
-box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
-
-/* Múltiples sombras */
-box-shadow:
-    0 2px 5px rgba(0,0,0,0.1),
-    0 10px 30px rgba(0,0,0,0.05);
-```
+**Explicación:**
+- **CSS Grid**: 3 columnas de igual tamaño
+- **Gap**: 30px de espacio entre tarjetas
+- Gradiente oscuro de fondo
+- Bordes redondeados (20px)
+- **Hover effect**: Se eleva 5px al pasar el mouse
+- Sombra pronunciada para profundidad
 
 ---
 
-### 9. **Backdrop Filter - Glassmorphism**
+### 8. **Card Icon - Posicionamiento absoluto**
 
 ```css
+.card-icon {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #00bcd4;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+```
+
+**Explicación:**
+- **`position: absolute`**: Se posiciona respecto al card
+- `top: -30px`: Se sale del card hacia arriba
+- `left: 50%` + `transform: translateX(-50%)`: Centra horizontalmente
+- Círculo perfecto con `border-radius: 50%`
+- Flexbox para centrar el icono dentro
+
+---
+
+### 9. **Form Grid Layout**
+
+```css
+.contact-form {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    grid-column: 1 / -1;
+}
+
+.contact-form input,
+.contact-form select {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 30px;
+    font-size: 15px;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus {
+    outline: none;
+    border-color: #1f91bc;
+}
+```
+
+**Explicación:**
+- Grid de 2 columnas para campos
+- `grid-column: 1 / -1`: Los form-group ocupan ambas columnas
+- Inputs con bordes redondeados (30px)
+- **Estado focus**: Borde azul cuando se selecciona
+- `outline: none`: Quita el borde por defecto del navegador
+
+---
+
+### 10. **Carousel - Transform y transiciones**
+
+```css
+.carousel-wrapper {
+    overflow: hidden;
+    flex: 1;
+}
+
+.carousel-track {
+    display: flex;
+    gap: 30px;
+    transition: transform 0.5s ease;
+}
+
 .carousel-card {
+    min-width: calc(33.333% - 20px);
     background: rgba(255,255,255,0.1);
+    padding: 40px 30px;
+    border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255,255,255,0.2);
+    transition: all 0.3s;
+}
+
+.carousel-card.active {
+    background: rgba(255,255,255,0.2);
+    transform: scale(1.05);
 }
 ```
 
-**¿Qué es Glassmorphism?**
-- Efecto de vidrio esmerilado muy moderno
-- Fondo semi-transparente con blur
-
-**Propiedades de backdrop-filter:**
-```css
-backdrop-filter: blur(10px);              /* Desenfoque */
-backdrop-filter: brightness(1.2);         /* Brillo */
-backdrop-filter: contrast(0.8);           /* Contraste */
-backdrop-filter: saturate(2);             /* Saturación */
-backdrop-filter: grayscale(50%);          /* Escala de grises */
-
-/* Múltiples filtros */
-backdrop-filter: blur(10px) brightness(1.1) saturate(1.5);
-```
-
-**Ejemplo completo de glassmorphism:**
-```css
-.glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px) saturate(180%);
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-```
+**Explicación:**
+- **`overflow: hidden`**: Oculta cards que están fuera de vista
+- **`transform`**: Mueve el track para mostrar diferentes cards
+- **`transition`**: Animación suave de 0.5 segundos
+- **Glassmorphism**: Fondo semi-transparente con `backdrop-filter: blur(10px)`
+- Card activa: Más opaca y ligeramente más grande
 
 ---
 
-### 10. **Media Queries - Responsive Design**
+### 11. **Responsive Design - Media Queries**
 
 ```css
+@media (max-width: 1024px) {
+    .pricing-cards,
+    .titulaciones-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .futuro-content,
+    .perfil-content {
+        flex-direction: column;
+    }
+}
+
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 32px;
     }
-}
-```
 
-**Sintaxis básica:**
-```css
-@media (condición) {
-    /* Estilos que solo aplican si se cumple la condición */
-}
-```
-
-**Condiciones comunes:**
-```css
-/* Ancho máximo (hasta 768px) */
-@media (max-width: 768px) { }
-
-/* Ancho mínimo (desde 768px en adelante) */
-@media (min-width: 768px) { }
-
-/* Entre dos anchos */
-@media (min-width: 768px) and (max-width: 1024px) { }
-
-/* Orientación */
-@media (orientation: portrait) { }   /* Vertical */
-@media (orientation: landscape) { }  /* Horizontal */
-
-/* Tipo de dispositivo */
-@media screen { }        /* Pantallas */
-@media print { }         /* Impresión */
-```
-
-**Breakpoints comunes:**
-```css
-/* Mobile first approach */
-/* Base: Mobile (< 768px) */
-.container { width: 100%; }
-
-/* Tablet (768px - 1024px) */
-@media (min-width: 768px) {
-    .container { width: 750px; }
-}
-
-/* Desktop (> 1024px) */
-@media (min-width: 1024px) {
-    .container { width: 970px; }
-}
-
-/* Large desktop (> 1200px) */
-@media (min-width: 1200px) {
-    .container { width: 1170px; }
-}
-```
-
----
-
-## ⚙️ Conceptos JavaScript
-
-### 1. **DOM Manipulation - Manipulación del DOM**
-
-```javascript
-const element = document.querySelector('.hero');
-const elements = document.querySelectorAll('.card');
-```
-
-**¿Qué es el DOM?**
-- Document Object Model
-- Representación en JavaScript de la estructura HTML
-
-**Métodos de selección:**
-```javascript
-// Selecciona el primer elemento que coincide
-document.querySelector('.clase');
-document.querySelector('#id');
-document.querySelector('div');
-
-// Selecciona todos los elementos que coinciden
-document.querySelectorAll('.clase');
-
-// Métodos antiguos (aún válidos)
-document.getElementById('id');
-document.getElementsByClassName('clase');
-document.getElementsByTagName('div');
-```
-
-**Manipulación de elementos:**
-```javascript
-// Cambiar contenido
-element.textContent = 'Nuevo texto';
-element.innerHTML = '<strong>Texto en negrita</strong>';
-
-// Cambiar estilos
-element.style.color = 'red';
-element.style.backgroundColor = 'blue';
-element.style.transform = 'translateX(50px)';
-
-// Agregar/quitar clases
-element.classList.add('active');
-element.classList.remove('inactive');
-element.classList.toggle('visible');
-element.classList.contains('active'); // true/false
-
-// Atributos
-element.getAttribute('href');
-element.setAttribute('href', 'https://...');
-element.removeAttribute('disabled');
-
-// Crear elementos
-const newDiv = document.createElement('div');
-newDiv.textContent = 'Hola mundo';
-document.body.appendChild(newDiv);
-
-// Eliminar elementos
-element.remove();
-```
-
----
-
-### 2. **Event Listeners - Escuchadores de Eventos**
-
-```javascript
-button.addEventListener('click', function() {
-    console.log('Click!');
-});
-```
-
-**Eventos comunes:**
-```javascript
-// Click
-element.addEventListener('click', handleClick);
-
-// Hover (mouse)
-element.addEventListener('mouseenter', handleMouseEnter);
-element.addEventListener('mouseleave', handleMouseLeave);
-element.addEventListener('mouseover', handleMouseOver);
-
-// Teclado
-element.addEventListener('keydown', handleKeyDown);
-element.addEventListener('keyup', handleKeyUp);
-
-// Formularios
-form.addEventListener('submit', handleSubmit);
-input.addEventListener('input', handleInput);
-input.addEventListener('change', handleChange);
-input.addEventListener('focus', handleFocus);
-input.addEventListener('blur', handleBlur);
-
-// Scroll
-window.addEventListener('scroll', handleScroll);
-
-// Resize
-window.addEventListener('resize', handleResize);
-
-// Load
-window.addEventListener('load', handleLoad);
-```
-
-**Objeto Event:**
-```javascript
-element.addEventListener('click', function(event) {
-    event.preventDefault();       // Previene comportamiento por defecto
-    event.stopPropagation();      // Detiene propagación del evento
-
-    console.log(event.target);    // Elemento que disparó el evento
-    console.log(event.type);      // Tipo de evento ('click')
-    console.log(event.clientX);   // Posición X del mouse
-    console.log(event.clientY);   // Posición Y del mouse
-});
-```
-
-**Remover event listeners:**
-```javascript
-function handleClick() {
-    console.log('Click!');
-}
-
-element.addEventListener('click', handleClick);
-element.removeEventListener('click', handleClick);
-```
-
----
-
-### 3. **Arrow Functions - Funciones Flecha**
-
-```javascript
-const nextSlide = () => {
-    currentSlide++;
-    updateCarousel();
-};
-```
-
-**Sintaxis tradicional vs Arrow functions:**
-```javascript
-// Función tradicional
-function sumar(a, b) {
-    return a + b;
-}
-
-// Arrow function
-const sumar = (a, b) => {
-    return a + b;
-};
-
-// Arrow function corta (return implícito)
-const sumar = (a, b) => a + b;
-
-// Un solo parámetro (paréntesis opcionales)
-const doble = num => num * 2;
-
-// Sin parámetros
-const saludar = () => console.log('Hola');
-```
-
-**Diferencias importantes:**
-```javascript
-// 'this' se comporta diferente
-const obj = {
-    nombre: 'Juan',
-
-    // Función tradicional: 'this' = obj
-    saludar: function() {
-        console.log('Hola ' + this.nombre);
-    },
-
-    // Arrow function: 'this' = contexto padre
-    despedir: () => {
-        console.log('Adiós ' + this.nombre); // undefined
+    .contact-form {
+        grid-template-columns: 1fr;
     }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+**Explicación:**
+- **1024px**: Tablets - Cambia grids a 1 columna
+- **768px**: Móviles - Todo a 1 columna, textos más pequeños
+- `flex-direction: column`: Apila elementos verticalmente
+- Hace la página completamente responsive
+
+---
+
+### 12. **Floating Buttons**
+
+```css
+.floating-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.whatsapp-btn,
+.chat-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.whatsapp-btn:hover,
+.chat-btn:hover {
+    transform: scale(1.1);
+}
+```
+
+**Explicación:**
+- **`position: fixed`**: Permanece en la misma posición al hacer scroll
+- `bottom: 30px; right: 30px`: Esquina inferior derecha
+- **`z-index: 1000`**: Por encima de todo
+- Efecto hover: Se agranda 10% al pasar el mouse
+- Sombra para dar sensación de flotación
+
+---
+
+## ⚙️ JavaScript (script.js)
+
+### 1. **Variables del Carousel**
+
+```javascript
+let currentSlide = 0;
+const carouselTrack = document.querySelector('.carousel-track');
+const cards = document.querySelectorAll('.carousel-card');
+```
+
+**Explicación:**
+- `currentSlide`: Índice del slide actual (empieza en 0)
+- `carouselTrack`: Elemento que contiene todas las cards
+- `cards`: NodeList con todas las tarjetas del carousel
+- `querySelector`: Selecciona el primer elemento que coincide
+- `querySelectorAll`: Selecciona todos los elementos que coinciden
+
+---
+
+### 2. **Función updateCarousel**
+
+```javascript
+function updateCarousel() {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 30;
+    const offset = -(currentSlide * (cardWidth + gap));
+    carouselTrack.style.transform = `translateX(${offset}px)`;
+
+    // Update active card
+    cards.forEach((card, index) => {
+        card.classList.remove('active');
+        if (index === currentSlide + 1) {
+            card.classList.add('active');
+        }
+    });
+}
+```
+
+**Explicación:**
+- **`offsetWidth`**: Obtiene el ancho real de una card en píxeles
+- **Cálculo del offset**: Multiplica el índice actual por (ancho + gap)
+- **`translateX`**: Mueve el track horizontalmente
+- **`forEach`**: Recorre todas las cards
+- Remueve clase `active` de todas y la agrega solo a la del centro
+- Template literals (`` ` ``) para insertar variables en strings
+
+---
+
+### 3. **Funciones de Navegación**
+
+```javascript
+function nextSlide() {
+    if (currentSlide < cards.length - 3) {
+        currentSlide++;
+        updateCarousel();
+    }
+}
+
+function prevSlide() {
+    if (currentSlide > 0) {
+        currentSlide--;
+        updateCarousel();
+    }
+}
+```
+
+**Explicación:**
+- **nextSlide**: Avanza al siguiente slide si no es el último
+- **prevSlide**: Retrocede al slide anterior si no es el primero
+- `cards.length - 3`: Límite porque mostramos 3 cards a la vez
+- Se llaman desde los botones con `onclick="nextSlide()"`
+
+---
+
+### 4. **Manejo del Formulario**
+
+```javascript
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // Get form data
+        const formData = new FormData(contactForm);
+
+        // Show success message
+        alert('¡Gracias por tu interés! Nos pondremos en contacto contigo pronto.');
+
+        // Reset form
+        contactForm.reset();
+    });
+}
+```
+
+**Explicación:**
+- **`addEventListener`**: Escucha el evento submit del formulario
+- **`e.preventDefault()`**: Evita que la página se recargue
+- **`FormData`**: Captura todos los datos del formulario
+- **`alert`**: Muestra mensaje de confirmación
+- **`reset()`**: Limpia todos los campos del formulario
+- Validación if: Solo ejecuta si existe el formulario
+
+---
+
+### 5. **Smooth Scroll para Anclas**
+
+```javascript
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+```
+
+**Explicación:**
+- Selecciona todos los enlaces que empiezan con `#`
+- Al hacer click, previene el comportamiento por defecto
+- **`scrollIntoView`**: Scroll suave hacia el elemento target
+- `behavior: 'smooth'`: Animación suave
+- `block: 'start'`: Alinea el elemento al inicio de la vista
+
+---
+
+### 6. **Intersection Observer - Animaciones al hacer scroll**
+
+```javascript
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
 };
-```
 
----
-
-### 4. **Template Literals - Plantillas de Texto**
-
-```javascript
-const offset = -(currentSlide * (cardWidth + gap));
-carouselTrack.style.transform = `translateX(${offset}px)`;
-```
-
-**Sintaxis:**
-```javascript
-// Comillas invertidas (backticks)
-const texto = `Hola mundo`;
-
-// Interpolación de variables
-const nombre = 'Juan';
-const edad = 25;
-const mensaje = `Hola, soy ${nombre} y tengo ${edad} años`;
-
-// Expresiones
-const precio = 100;
-const total = `Total: $${precio * 1.16}`;
-
-// Multilínea
-const html = `
-    <div class="card">
-        <h2>${titulo}</h2>
-        <p>${descripcion}</p>
-    </div>
-`;
-```
-
-**Vs concatenación tradicional:**
-```javascript
-// Tradicional (difícil de leer)
-const mensaje = 'Hola, soy ' + nombre + ' y tengo ' + edad + ' años';
-
-// Template literal (más legible)
-const mensaje = `Hola, soy ${nombre} y tengo ${edad} años`;
-```
-
----
-
-### 5. **Array Methods - Métodos de Arreglos**
-
-```javascript
-cards.forEach((card, index) => {
-    card.classList.remove('active');
-});
-```
-
-**forEach - Iterar sobre cada elemento:**
-```javascript
-const numeros = [1, 2, 3, 4, 5];
-
-numeros.forEach((numero, indice) => {
-    console.log(`Elemento ${indice}: ${numero}`);
-});
-```
-
-**map - Transformar cada elemento:**
-```javascript
-const numeros = [1, 2, 3, 4, 5];
-const dobles = numeros.map(num => num * 2);
-// dobles = [2, 4, 6, 8, 10]
-```
-
-**filter - Filtrar elementos:**
-```javascript
-const numeros = [1, 2, 3, 4, 5];
-const pares = numeros.filter(num => num % 2 === 0);
-// pares = [2, 4]
-```
-
-**find - Encontrar un elemento:**
-```javascript
-const usuarios = [
-    { id: 1, nombre: 'Juan' },
-    { id: 2, nombre: 'María' }
-];
-const usuario = usuarios.find(u => u.id === 2);
-// usuario = { id: 2, nombre: 'María' }
-```
-
-**reduce - Reducir a un solo valor:**
-```javascript
-const numeros = [1, 2, 3, 4, 5];
-const suma = numeros.reduce((total, num) => total + num, 0);
-// suma = 15
-```
-
----
-
-### 6. **Intersection Observer API**
-
-```javascript
 const observer = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
         }
     });
-}, options);
+}, observerOptions);
+
+document.querySelectorAll('.price-card, .titulacion-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+});
 ```
 
-**¿Qué es?**
-- API moderna para detectar cuando elementos entran/salen del viewport
-- Más eficiente que usar scroll events
-
-**Configuración:**
-```javascript
-const options = {
-    root: null,              // null = viewport del navegador
-    rootMargin: '0px',       // Margen alrededor del root
-    threshold: 0.5           // 0.5 = 50% del elemento visible
-};
-
-const observer = new IntersectionObserver(callback, options);
-```
-
-**Threshold (umbral):**
-```javascript
-threshold: 0      // Se activa cuando aparece cualquier parte
-threshold: 0.5    // Se activa cuando el 50% es visible
-threshold: 1.0    // Se activa cuando el 100% es visible
-threshold: [0, 0.5, 1]  // Se activa en múltiples puntos
-```
-
-**Callback:**
-```javascript
-const callback = (entries, observer) => {
-    entries.forEach(entry => {
-        console.log(entry.isIntersecting);     // true/false
-        console.log(entry.intersectionRatio);  // % visible (0-1)
-        console.log(entry.target);             // Elemento observado
-
-        if (entry.isIntersecting) {
-            // Hacer algo cuando entra en vista
-            entry.target.classList.add('visible');
-
-            // Dejar de observar (optimización)
-            observer.unobserve(entry.target);
-        }
-    });
-};
-```
-
-**Uso completo:**
-```javascript
-// Crear observer
-const observer = new IntersectionObserver(callback, options);
-
-// Observar elementos
-const elementos = document.querySelectorAll('.fade-in');
-elementos.forEach(el => observer.observe(el));
-
-// Dejar de observar
-observer.unobserve(elemento);
-
-// Desconectar completamente
-observer.disconnect();
-```
+**Explicación:**
+- **IntersectionObserver**: API moderna para detectar cuando elementos entran en vista
+- **threshold: 0.1**: Activa cuando el 10% del elemento es visible
+- **rootMargin**: Margen negativo de 50px en la parte inferior
+- **isIntersecting**: `true` cuando el elemento entra en vista
+- Elementos empiezan invisibles (`opacity: 0`) y abajo (`translateY(30px)`)
+- Al entrar en vista, se vuelven visibles y suben a su posición
 
 ---
 
-### 7. **setInterval y setTimeout**
+### 7. **Auto-scroll del Carousel**
 
 ```javascript
 let autoScrollInterval = setInterval(() => {
-    nextSlide();
+    if (currentSlide < cards.length - 3) {
+        nextSlide();
+    } else {
+        currentSlide = 0;
+        updateCarousel();
+    }
 }, 5000);
+
+// Pause auto-scroll on hover
+carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoScrollInterval);
+});
+
+carouselContainer.addEventListener('mouseleave', () => {
+    autoScrollInterval = setInterval(() => {
+        // ... mismo código
+    }, 5000);
+});
 ```
 
-**setTimeout - Ejecuta una vez después de un delay:**
+**Explicación:**
+- **`setInterval`**: Ejecuta una función cada 5000ms (5 segundos)
+- Avanza automáticamente al siguiente slide
+- Al llegar al final, vuelve al inicio (loop infinito)
+- **mouseenter**: Pausa el auto-scroll cuando el mouse está encima
+- **mouseleave**: Reinicia el auto-scroll cuando el mouse sale
+- **`clearInterval`**: Detiene el intervalo
+
+---
+
+### 8. **Scroll Effect en Header**
+
 ```javascript
-setTimeout(() => {
-    console.log('Esto se ejecuta después de 3 segundos');
-}, 3000);
+let lastScroll = 0;
+const header = document.querySelector('.header');
 
-// Con parámetros
-setTimeout(function(nombre) {
-    console.log('Hola ' + nombre);
-}, 2000, 'Juan');
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
 
-// Cancelar timeout
-const timeoutId = setTimeout(() => { }, 5000);
-clearTimeout(timeoutId);
-```
-
-**setInterval - Ejecuta repetidamente:**
-```javascript
-setInterval(() => {
-    console.log('Esto se ejecuta cada 2 segundos');
-}, 2000);
-
-// Cancelar interval
-const intervalId = setInterval(() => { }, 2000);
-clearInterval(intervalId);
-```
-
-**Ejemplo práctico - Contador:**
-```javascript
-let contador = 0;
-const intervalId = setInterval(() => {
-    contador++;
-    console.log(contador);
-
-    if (contador === 10) {
-        clearInterval(intervalId);
-        console.log('Finalizado');
+    if (currentScroll > 100) {
+        header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.15)';
+    } else {
+        header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
     }
-}, 1000);
-```
 
----
-
-### 8. **FormData API**
-
-```javascript
-const formData = new FormData(contactForm);
-```
-
-**¿Qué es?**
-- API para capturar datos de formularios fácilmente
-- Útil para enviar datos a un servidor
-
-**Uso básico:**
-```javascript
-const form = document.querySelector('form');
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-
-    // Obtener valores
-    const nombre = formData.get('nombre');
-    const email = formData.get('email');
-
-    console.log(nombre, email);
+    lastScroll = currentScroll;
 });
 ```
 
-**Métodos:**
-```javascript
-const formData = new FormData();
-
-// Agregar datos
-formData.append('nombre', 'Juan');
-formData.append('edad', 25);
-
-// Obtener datos
-formData.get('nombre');        // 'Juan'
-
-// Ver todos los datos
-for (let [key, value] of formData.entries()) {
-    console.log(key, value);
-}
-
-// Eliminar
-formData.delete('edad');
-
-// Verificar si existe
-formData.has('nombre');        // true
-```
-
-**Enviar a servidor (con fetch):**
-```javascript
-const formData = new FormData(form);
-
-fetch('/api/submit', {
-    method: 'POST',
-    body: formData
-})
-.then(response => response.json())
-.then(data => console.log(data));
-```
+**Explicación:**
+- **`window.pageYOffset`**: Obtiene la posición actual del scroll
+- Si el scroll es mayor a 100px, aumenta la sombra del header
+- Crea un efecto de "elevación" cuando se hace scroll
+- `lastScroll`: Guarda la posición anterior del scroll
+- Se ejecuta cada vez que el usuario hace scroll
 
 ---
 
-## 💡 Mejores Prácticas
+### 9. **Event Listeners de Botones Flotantes**
 
-### CSS
-
-1. **Mobile First**
-```css
-/* Base: Mobile */
-.container { width: 100%; }
-
-/* Desktop: Agregar complejidad */
-@media (min-width: 768px) {
-    .container { width: 750px; }
-}
-```
-
-2. **Nomenclatura BEM**
-```css
-/* Block */
-.card { }
-
-/* Element */
-.card__title { }
-.card__image { }
-
-/* Modifier */
-.card--featured { }
-.card__title--large { }
-```
-
-3. **Variables CSS**
-```css
-:root {
-    --color-primary: #1f91bc;
-    --spacing-md: 20px;
-}
-
-.button {
-    background-color: var(--color-primary);
-    padding: var(--spacing-md);
-}
-```
-
-### JavaScript
-
-1. **Const vs Let**
 ```javascript
-const nombre = 'Juan';    // No cambia
-let edad = 25;            // Puede cambiar
-// Nunca usar var
-```
+const whatsappBtn = document.querySelector('.whatsapp-btn');
+if (whatsappBtn) {
+    whatsappBtn.addEventListener('click', function() {
+        window.open('https://wa.me/573383066', '_blank');
+    });
+}
 
-2. **Validar antes de manipular**
-```javascript
-const element = document.querySelector('.elemento');
-if (element) {
-    element.style.color = 'red';
+const chatBtn = document.querySelector('.chat-btn');
+if (chatBtn) {
+    chatBtn.addEventListener('click', function() {
+        alert('Chat en línea: Este servicio estará disponible próximamente.');
+    });
 }
 ```
 
-3. **Event delegation**
-```javascript
-// Mal: Event listener en cada item
-items.forEach(item => {
-    item.addEventListener('click', handleClick);
-});
-
-// Bien: Un solo event listener en el padre
-parent.addEventListener('click', (e) => {
-    if (e.target.matches('.item')) {
-        handleClick(e);
-    }
-});
-```
+**Explicación:**
+- **WhatsApp button**: Abre WhatsApp Web con el número de la universidad
+- **`window.open`**: Abre una nueva pestaña
+- **`_blank`**: Target para nueva pestaña
+- **Chat button**: Muestra un mensaje informativo
+- Validación `if`: Previene errores si los botones no existen
 
 ---
 
-## ⚡ Optimizaciones
+### 10. **Inicialización al cargar**
 
-### Performance CSS
-
-1. **Evitar selectores complejos**
-```css
-/* Lento */
-div > ul > li > a { }
-
-/* Rápido */
-.nav-link { }
-```
-
-2. **Will-change para animaciones**
-```css
-.animated-element {
-    will-change: transform;
-}
-```
-
-3. **Contenido crítico inline**
-```html
-<style>
-    /* CSS crítico para Above the Fold */
-    .hero { ... }
-</style>
-```
-
-### Performance JavaScript
-
-1. **Debounce para eventos frecuentes**
 ```javascript
-function debounce(func, wait) {
-    let timeout;
-    return function(...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-}
+window.addEventListener('load', updateCarousel);
+window.addEventListener('resize', updateCarousel);
 
-window.addEventListener('scroll', debounce(handleScroll, 100));
+console.log('UCompensar - Ingeniería de Sistemas page loaded successfully!');
 ```
 
-2. **Lazy loading de imágenes**
-```html
-<img loading="lazy" src="imagen.jpg">
-```
-
-3. **Minimizar reflows**
-```javascript
-// Mal: Multiple reflows
-element.style.width = '100px';
-element.style.height = '100px';
-
-// Bien: Un solo reflow
-element.style.cssText = 'width: 100px; height: 100px;';
-```
+**Explicación:**
+- **load event**: Se ejecuta cuando la página termina de cargar
+- **resize event**: Se ejecuta cuando se cambia el tamaño de la ventana
+- Recalcula el carousel para mantener el diseño correcto
+- **console.log**: Mensaje en la consola del navegador para debugging
 
 ---
 
-**Fin de la documentación técnica** 🎉
+## 📖 Guía de Uso
+
+### Para modificar el contenido:
+
+1. **Cambiar textos**: Edita directamente en `index.html`
+2. **Cambiar colores**: Modifica las variables de color en `styles.css`
+3. **Cambiar imágenes**: Reemplaza las URLs en `index.html`
+
+### Colores principales utilizados:
+
+| Color | Código | Uso |
+|-------|--------|-----|
+| Azul principal | `#1f91bc` | Hero, títulos destacados |
+| Azul oscuro | `#0d5d7a` | Gradientes, fondos |
+| Gris oscuro | `#293946` | Top bar, textos |
+| Naranja | `#ea952f` | Botones de acción |
+| Cyan | `#00bcd4` | Acentos, iconos |
+| Rosa | `#c2185b` | Botones de tarifas |
+
+### Tipografías:
+
+- **Montserrat**: Títulos principales (bold, peso 700-800)
+- **Roboto**: Texto general (regular, peso 400)
+- **Poppins**: Elementos especiales
+
+### Breakpoints responsive:
+
+- **Desktop**: > 1024px
+- **Tablet**: 768px - 1024px
+- **Mobile**: < 768px
+
+---
+
+## 🔧 Funcionalidades Implementadas
+
+✅ Navegación sticky (fija al hacer scroll)
+✅ Carousel interactivo con auto-scroll
+✅ Formulario con validación HTML5
+✅ Animaciones al hacer scroll (Intersection Observer)
+✅ Botones flotantes de WhatsApp y Chat
+✅ Diseño completamente responsive
+✅ Efectos hover en tarjetas y botones
+✅ Smooth scroll para navegación interna
+✅ Video de YouTube embebido
+
+---
+
+## 📝 Notas Importantes
+
+1. **Las imágenes** se cargan desde `same-assets.com` (CDN externo)
+2. **Las fuentes** se cargan desde Google Fonts
+3. **El formulario** actualmente solo muestra un alert, para producción deberías conectarlo a un backend
+4. **El botón de WhatsApp** abre el número 573383066, cámbialo por el número real
+5. **Los enlaces** están con `href="#"`, reemplázalos con las URLs reales
+
+---
